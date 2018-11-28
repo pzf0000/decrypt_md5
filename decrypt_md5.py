@@ -8,14 +8,23 @@ import os
 
 all_letters = ascii_letters + digits + '.,;*@#'
 
+# md5码
 md5_value = 'e522214d32eabe3fda854da213c62d5f'
+# 最小长度
 min_len = 8
+# 最大长度
 max_len = 18
+# 使用CPU核数，由于有主进程，实际上有n+1个进程
 worker_num = 8
+# 线程数，只有验证md5的部分使用了单核多线程
 thread_num = 8
+# 枚举队列
 taskq = multiprocessing.Queue()
+# 结果队列，若有数据传入，则终止所有进程
 resultq = multiprocessing.Queue()
+# 枚举长度，为了多线程运行，使用了multiprocessing的队列
 len_q = multiprocessing.Queue()
+# 记录所有的进程信息，本项目没有使用python已有的进程管理工具
 record = []
 
 
